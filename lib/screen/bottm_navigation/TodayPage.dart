@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:captain11/screen/bottm_navigation/HomePage.dart';
-import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
-import 'package:google_fonts/google_fonts.dart'; // لا تنسَ استيراد google_fonts لاستخدام خط Changa
 
-class MyHomePage extends StatefulWidget {
+class TodayPage extends StatefulWidget {
+  TodayPage({super.key});
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  // ignore: library_private_types_in_public_api
+  _TodayPageState createState() => _TodayPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _TodayPageState extends State<TodayPage> {
   int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    StorePage(),
-    TodayPage(),
-    HomePage(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -49,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'كابتن ',
+          'اليوم ',
           style: GoogleFonts.changa(
             fontSize: 24,
             fontWeight: FontWeight.bold,

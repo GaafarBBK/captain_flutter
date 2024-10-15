@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:captain11/screen/home.dart';
+import 'package:captain11/screen/regicter_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -12,31 +13,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  void _login() {
-    if (_formKey.currentState!.validate()) {
-      String email = _emailController.text;
-      String password = _passwordController.text;
-
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Login Info"),
-            content: Text("Email: $email\nPassword: $password"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 50),
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
@@ -101,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         obscureText: true,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          if (value == null || value!.isEmpty) {
                             return 'يجب إدخال كلمة المرور';
                           }
                           return null;
@@ -121,30 +97,37 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
+                      Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Color(0xFF00A7E1), Color(0xFF003459)],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter)),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomeScreen()),
-                          );
-                        },
-                        child: const Text(
-                          'الدخول',
-                          style: TextStyle(color: Colors.white),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                           MyHomePage()));
+                            }
+                          },
+                          child: const Text(
+                            'الدخول',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Text('أو سجل دخول عبر'),
+                      const Text('أو سجل دخول عبر'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -153,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(color: Colors.white)),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(3.0),
                               child: Image.asset(
                                 "assets/apple_uu.png",
                                 height: 70,
@@ -167,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(color: Colors.white)),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(3.0),
                               child: Image.asset(
                                 "assets/google_oo.png",
                                 height: 50,
@@ -177,13 +160,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
                       Padding(
-                        padding: const EdgeInsets.all(25.0),
+                        padding: const EdgeInsets.all(0.0),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            const SizedBox(
+                              width: 70,
+                            ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Regicterscreen()),
+                                );
+                              },
                               child: const Text(
                                 'سجّل الآن',
                                 style: TextStyle(
@@ -192,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                            Text('ليس لديك حسابًا بالفعل؟'),
+                            const Text('ليس لديك حسابًا بالفعل؟'),
                           ],
                         ),
                       ),

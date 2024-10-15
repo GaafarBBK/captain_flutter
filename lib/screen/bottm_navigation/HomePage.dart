@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:captain11/screen/bottm_navigation/HomePage.dart';
+import 'package:captain11/screen/home.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
-import 'package:google_fonts/google_fonts.dart'; // لا تنسَ استيراد google_fonts لاستخدام خط Changa
+// ignore: file_names
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  // ignore: library_private_types_in_public_api
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    StorePage(),
-    TodayPage(),
-    HomePage(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -41,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
-  // const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'كابتن ',
+          'هوم ',
           style: GoogleFonts.changa(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -83,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(16.0),
       ),
       bottomNavigationBar: BottomNavigationBar(
+       
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.storefront_outlined),
@@ -97,10 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'الرئيسية',
           ),
         ],
+        
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+       
       ),
     );
   }
