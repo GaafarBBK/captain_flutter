@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:captain11/screen/home.dart';
-import 'package:captain11/screen/regicter_screen.dart';
+import 'package:captain11/screen/auth_screens/register_screen.dart';
+import 'package:captain11/screen/auth_screens/regicter_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -8,6 +9,8 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
+bool isPasswordVisible = false;
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
@@ -34,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 40),
                 const Text(
-                  'مرحبا',
+                  ' مرحبا بيك',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -60,12 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             return 'يجب إدخال البريد الإلكتروني';
                           } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
                               .hasMatch(value)) {
-                            return 'Please enter a valid email';
+                            return 'يجب إدخال البريد الإلكتروني';
                           }
                           return null;
                         },
                       ),
-                      const SizedBox(height: 50),
+                      const SizedBox(height: 30),
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
@@ -74,20 +77,38 @@ class _LoginScreenState extends State<LoginScreen> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
-                        obscureText: true,
+                        obscureText: !isPasswordVisible,
                         validator: (value) {
-                          if (value == null || value!.isEmpty) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length < 8) {
                             return 'يجب إدخال كلمة المرور';
                           }
                           return null;
                         },
                       ),
-                      const SizedBox(height: 10),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Registerscreen()));
+                          },
                           child: const Text(
                             'هل نسيت كلمة المرور؟',
                             style: TextStyle(
@@ -98,7 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
                             gradient: LinearGradient(
                                 colors: [Color(0xFF00A7E1), Color(0xFF003459)],
                                 begin: Alignment.topCenter,
@@ -108,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 50, vertical: 15),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                           onPressed: () {
@@ -116,8 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                           MyHomePage()));
+                                      builder: (context) => MyHomePage()));
                             }
                           },
                           child: const Text(
@@ -169,6 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(
                               width: 70,
                             ),
+                            const Text('ليس لديك حسابًا بالفعل؟'),
                             TextButton(
                               onPressed: () {
                                 Navigator.pushReplacement(
@@ -186,7 +208,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                            const Text('ليس لديك حسابًا بالفعل؟'),
                           ],
                         ),
                       ),

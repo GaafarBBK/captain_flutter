@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:captain11/screen/bottm_navigation/HomePage.dart';
 import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
-import 'package:google_fonts/google_fonts.dart'; // لا تنسَ استيراد google_fonts لاستخدام خط Changa
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   final List<Widget> _pages = [
     StorePage(),
@@ -18,70 +18,25 @@ class _MyHomePageState extends State<MyHomePage> {
     HomePage(),
   ];
 
+  final List<Widget?> _drawer = [null, null, Drawer()];
+  final List<PreferredSizeWidget?> appbars = [
+    StoreAppBar(),
+    null,
+    null,
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if (_selectedIndex == 0) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => StorePage()),
-        );
-      }
-      if (_selectedIndex == 1) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => TodayPage()),
-        );
-      }
-      if (_selectedIndex == 2) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
-      }
     });
   }
-  // const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'كابتن ',
-          style: GoogleFonts.changa(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        actions: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.notifications_none,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          )
-        ],
-        backgroundColor: Colors.blue,
-      ),
-      drawer: const Drawer(),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-      ),
+      appBar: appbars[_selectedIndex],
+      drawer: _drawer[_selectedIndex],
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

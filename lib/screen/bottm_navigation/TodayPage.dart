@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:captain11/screen/bottm_navigation/HomePage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
 
 class TodayPage extends StatefulWidget {
   TodayPage({super.key});
+
   @override
   // ignore: library_private_types_in_public_api
   _TodayPageState createState() => _TodayPageState();
 }
 
 class _TodayPageState extends State<TodayPage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -36,66 +38,87 @@ class _TodayPageState extends State<TodayPage> {
       }
     });
   }
-  // const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'اليوم ',
-          style: GoogleFonts.changa(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+      
+      body: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.white),
+              ),
+              height: 200,
+              width: 500,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    const SizedBox(height: 20),
+                    DatePicker(
+                      DateTime.now(),
+                      height: 90,
+                      width: 70,
+                      initialSelectedDate: DateTime.now(),
+                      locale: "ar",
+                      selectionColor: Colors.black54,
+                      selectedTextColor: Colors.white,
+                      dayTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                      monthTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                      dateTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Expanded(
+              child: DefaultTabController(
+                length: 2,
+                child: Column(
+                  children: [
+                    const TabBar(
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.grey,
+                      indicatorColor: Colors.blue,
+                      tabs: [
+                        Text('النظام الغذاء '),
+                        Text('جدول التمرين '),
+                      ],
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          Container(),
+                          Container(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-        actions: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.notifications_none,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          )
-        ],
-        backgroundColor: Colors.blue,
-      ),
-      drawer: const Drawer(),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            label: 'المتجر',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.date_range_outlined),
-            label: 'اليوم',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'الرئيسية',
-          ),
-        ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:captain11/screen/home.dart';
-import 'package:captain11/screen/login.dart';
+import 'package:captain11/screen/auth_screens/login.dart';
 
 class Regicterscreen extends StatefulWidget {
   const Regicterscreen({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                       padding: EdgeInsets.all(16.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "ابدأ الآن",
@@ -150,7 +150,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                             showDatePicker(
                                     context: context,
                                     firstDate: DateTime(1997),
-                                    lastDate: DateTime(2006))
+                                    lastDate: DateTime(2010))
                                 .then((selectedDate) {
                               setState(() {
                                 _batdController.text = selectedDate!
@@ -194,12 +194,13 @@ class _RegicterscreenState extends State<Regicterscreen> {
                         ),
                         const SizedBox(height: 40),
                         Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
                               gradient: LinearGradient(
                                   colors: [
-                                Color(0xFF00A7E1),
-                                Color(0xFF003459)
-                              ],
+                                    Color(0xFF00A7E1),
+                                    Color(0xFF003459)
+                                  ],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter)),
                           child: ElevatedButton(
@@ -207,7 +208,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 100, vertical: 15),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                             onPressed: () {
@@ -215,8 +216,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                             MyHomePage()));
+                                        builder: (context) => MyHomePage()));
                               }
                             },
                             child: const Text(
@@ -235,6 +235,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                               const SizedBox(
                                 width: 40,
                               ),
+                              const Text('هل لديك حساب بل فعل؟'),
                               TextButton(
                                 onPressed: () {
                                   Navigator.pushReplacement(
@@ -252,7 +253,6 @@ class _RegicterscreenState extends State<Regicterscreen> {
                                   ),
                                 ),
                               ),
-                              const Text('هل لديك حساب بل فعل؟'),
                             ],
                           ),
                         ),

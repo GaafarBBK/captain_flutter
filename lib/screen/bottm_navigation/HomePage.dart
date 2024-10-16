@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:captain11/screen/home.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
 // ignore: file_names
@@ -13,7 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
+    int _currentValue = 3;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -41,8 +43,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return const Padding(
+        padding: EdgeInsets.all(16.0),
+      );
+  }
+
+
+
+PreferredSizeWidget HomeAppBar() {
+    return AppBar(
         centerTitle: true,
         title: Text(
           'هوم ',
@@ -53,54 +62,39 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
+          Column(
+            children: <Widget>[
+           Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.notifications_none,
+                      color: Colors.white,
+                    ),
+                  ),
+                             NumberPicker(
+                              
+                value: _currentValue,
+                minValue: 0,
+                maxValue: 100,
+                onChanged: (value) => setState(() => _currentValue = value),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.notifications_none,
-                  color: Colors.white,
-                ),
+           
+                ],
               ),
             ],
           )
         ],
         backgroundColor: Colors.blue,
-      ),
-      drawer: const Drawer(),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-       
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            label: 'المتجر',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.date_range_outlined),
-            label: 'اليوم',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'الرئيسية',
-          ),
-        ],
-        
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-       
-      ),
-    );
+      );
   }
-}
+
+  }

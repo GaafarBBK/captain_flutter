@@ -36,12 +36,17 @@ class _StorePageState extends State<StorePage> {
       }
     });
   }
-  // const HomeScreen({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return const Padding(
+        padding: EdgeInsets.all(16.0),
+      );
+  }
+}
+
+  PreferredSizeWidget StoreAppBar() {
+    return AppBar(
         centerTitle: true,
         title: Text(
           'متجر ',
@@ -72,31 +77,5 @@ class _StorePageState extends State<StorePage> {
           )
         ],
         backgroundColor: Colors.blue,
-      ),
-      drawer: const Drawer(),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            label: 'المتجر',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.date_range_outlined),
-            label: 'اليوم',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'الرئيسية',
-          ),
-        ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
-    );
+      );
   }
-}
