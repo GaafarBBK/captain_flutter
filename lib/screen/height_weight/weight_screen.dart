@@ -12,7 +12,7 @@ class WeightScreen extends StatefulWidget {
 }
 
 class _WeightScreenState extends State<WeightScreen> {
-  int _height = 70;
+ 
   int _weight = 70;
 
   @override
