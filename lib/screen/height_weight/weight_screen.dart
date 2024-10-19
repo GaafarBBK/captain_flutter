@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:captain11/screen/auth_screens/login.dart';
 import 'package:captain11/screen/height_weight/height_screen.dart';
+import 'package:captain11/screen/auth_screens/regicter_screen.dart';
 
 class WeightScreen extends StatefulWidget {
   const WeightScreen({super.key});
@@ -126,9 +126,9 @@ class _WeightScreenState extends State<WeightScreen> {
                           CupertinoPageRoute(
                               builder: (context) => const HeightScreen()));
                     },
-                    child: const Text(
-                      '<',
-                      style: TextStyle(color: Colors.white),
+                    child: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -155,11 +155,11 @@ class _WeightScreenState extends State<WeightScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
+                              builder: (context) => const Regicterscreen()));
                     },
-                    child: const Text(
-                      '>',
-                      style: TextStyle(color: Colors.white),
+                    child: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.white,
                     ),
                   ),
                 ),

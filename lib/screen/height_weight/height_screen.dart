@@ -19,7 +19,7 @@ class _HeightScreenState extends State<HeightScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start, // Align content at the top
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(0.0),
@@ -112,25 +112,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  // child: ElevatedButton(
-                  //   style: ElevatedButton.styleFrom(
-                  //     padding: const EdgeInsets.symmetric(
-                  //         horizontal: 20, vertical: 10),
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(20),
-                  //     ),
-                  //   ),
-                  //   onPressed: () {
-                  //     Navigator.push(
-                  //         context,
-                  //         CupertinoPageRoute(
-                  //             builder: (context) => const WeightScreen()));
-                  //   },
-                  //   child: const Text(
-                  //     '<',
-                  //     style: TextStyle(color: Colors.white),
-                  //   ),
-                  // ),
+                 
                 ),
               ),
               SizedBox(
@@ -157,9 +139,9 @@ class _HeightScreenState extends State<HeightScreen> {
                           MaterialPageRoute(
                               builder: (context) => const WeightScreen()));
                     },
-                    child: const Text(
-                      '>',
-                      style: TextStyle(color: Colors.white),
+                    child: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.white,
                     ),
                   ),
                 ),
