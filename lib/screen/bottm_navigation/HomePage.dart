@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:captain11/screen/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
-// ignore: file_names
+import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
   @override
-  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 2;
-    int _currentValue = 3;
+  int _currentValue = 3;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -44,57 +41,52 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-        padding: EdgeInsets.all(16.0),
-      );
+      padding: EdgeInsets.all(16.0),
+    );
   }
 
-
-
-PreferredSizeWidget HomeAppBar() {
+  PreferredSizeWidget HomeAppBar() {
     return AppBar(
-        centerTitle: true,
-        title: Text(
-          'هوم ',
-          style: GoogleFonts.changa(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+      centerTitle: true,
+      title: Text(
+        'هوم ',
+        style: GoogleFonts.changa(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
-        actions: [
-          Column(
-            children: <Widget>[
-           Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
+      ),
+      actions: [
+        Column(
+          children: <Widget>[
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.notifications_none,
-                      color: Colors.white,
-                    ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.notifications_none,
+                    color: Colors.white,
                   ),
-                             NumberPicker(
-                              
-                value: _currentValue,
-                minValue: 0,
-                maxValue: 100,
-                onChanged: (value) => setState(() => _currentValue = value),
-              ),
-           
-                ],
-              ),
-            ],
-          )
-        ],
-        backgroundColor: Colors.blue,
-      );
+                ),
+                NumberPicker(
+                  value: _currentValue,
+                  minValue: 0,
+                  maxValue: 100,
+                  onChanged: (value) => setState(() => _currentValue = value),
+                ),
+              ],
+            ),
+          ],
+        )
+      ],
+      backgroundColor: Colors.blue,
+    );
   }
-
-  }
+}

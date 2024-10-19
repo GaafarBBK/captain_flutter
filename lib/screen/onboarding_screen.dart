@@ -11,21 +11,21 @@ class OnboardingScreen extends StatelessWidget {
           title: "تدرب في أي وقت ومن أي مكان",
           body:
               "حقق أهدافك البدنية مع برامج تدريب متاحة في أي وقت وأينما كنت. ابدأ رحلة اللياقة البدنية الخاصة بك الآن.",
-          image: buildImage('assets/intro1.png'),
+          image: buildImage('assets/login.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: "برامج تدريب مخصصة",
           body:
               "اختر من بين مجموعة من البرامج المصممة خصيصًا لتناسب مستوى لياقتك وأهدافك الشخصية.",
-          image: buildImage('assets/onboarding/intro2.png'),
+          image: buildImage('assets/login.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: "ابدأ التغيير اليوم",
           body:
               "انضم إلى مجتمعنا الرياضي الآن وابدأ تحسين قوتك ولياقتك مع أفضل المدربين والمحتوى الحصري.",
-          image: buildImage('assets/intro3.png'),
+          image: buildImage('assets/login.png'),
           decoration: getPageDecoration(),
         ),
       ],
@@ -69,5 +69,3 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 }
-
-

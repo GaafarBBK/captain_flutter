@@ -6,7 +6,6 @@ import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 class StorePage extends StatefulWidget {
   StorePage({super.key});
   @override
-  // ignore: library_private_types_in_public_api
   _StorePageState createState() => _StorePageState();
 }
 

@@ -15,7 +15,7 @@ class _GenderToggleSwitchState extends State<GenderToggleSwitch> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Gender Selector',
+          'أختار جنسك',
           style: TextStyle(
             color: isMale ? Colors.blue : Colors.pink,
             fontSize: 25,
@@ -39,7 +39,7 @@ class _GenderToggleSwitchState extends State<GenderToggleSwitch> {
               ),
               child: Icon(
                 isMale ? Icons.male : Icons.female,
-                size: 100,
+                size: 150,
                 color: isMale ? Colors.blue : Colors.pink,
               ),
             ),

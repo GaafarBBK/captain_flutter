@@ -12,8 +12,6 @@ class HeightScreen extends StatefulWidget {
 
 class _HeightScreenState extends State<HeightScreen> {
   int _height = 175;
-  int _weight = 70;
-  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +113,7 @@ class _HeightScreenState extends State<HeightScreen> {
                  
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 280,
               ),
               Padding(

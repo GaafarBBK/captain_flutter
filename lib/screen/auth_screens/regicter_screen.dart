@@ -249,7 +249,6 @@ class _RegicterscreenState extends State<Regicterscreen> {
                                   'سجّل الدخول',
                                   style: TextStyle(
                                     color: Colors.blue,
-                                    decoration: TextDecoration.underline,
                                   ),
                                 ),
                               ),

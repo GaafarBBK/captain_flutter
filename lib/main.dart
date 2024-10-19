@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:captain11/helpers/consts.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:captain11/screen/auth_screens/login.dart';
+import 'package:captain11/screen/onboarding_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:captain11/screen/bottm_navigation/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());

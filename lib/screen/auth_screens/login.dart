@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'هل نسيت كلمة المرور؟',
                             style: TextStyle(
                               color: Colors.blue,
-                              decoration: TextDecoration.underline,
+                              // decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                                 colors: [Color(0xFF00A7E1), Color(0xFF003459)],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter)),
@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 'سجّل الآن',
                                 style: TextStyle(
                                   color: Colors.blue,
-                                  decoration: TextDecoration.underline,
+                                
                                 ),
                               ),
                             ),

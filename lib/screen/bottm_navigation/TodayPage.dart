@@ -1,19 +1,133 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:captain11/screen/bottm_navigation/HomePage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
+import 'package:captain11/screen/bottm_navigation/TodayPage8/details.dart';
 
 class TodayPage extends StatefulWidget {
   TodayPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _TodayPageState createState() => _TodayPageState();
 }
 
 class _TodayPageState extends State<TodayPage> {
   int _selectedIndex = 1;
+
+  List<Map<String, dynamic>> workouts = [
+    {
+      'name': '1أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/cardio.png',
+      'date': '2024-10-19',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/yoga.png',
+      'date': '2024-10-21',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'ppppp': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+    {
+      'name': 'أسم التدريب',
+      'description1': 'وصف التمرين',
+      'description': 'الوزن و العدادت',
+      'image': 'assets/weights.png',
+      'date': '2024-10-20',
+      'isChecked': false,
+    },
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -42,7 +156,6 @@ class _TodayPageState extends State<TodayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Padding(
         padding: const EdgeInsets.all(0.0),
         child: Column(
@@ -100,15 +213,15 @@ class _TodayPageState extends State<TodayPage> {
                       unselectedLabelColor: Colors.grey,
                       indicatorColor: Colors.blue,
                       tabs: [
-                        Text('النظام الغذاء '),
                         Text('جدول التمرين '),
+                        Text('النظام الغذاء '),
                       ],
                     ),
                     Expanded(
                       child: TabBarView(
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
-                          Container(),
+                          buildWorkoutCards(context),
                           Container(),
                         ],
                       ),
@@ -119,6 +232,87 @@ class _TodayPageState extends State<TodayPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildWorkoutCards(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ListView.builder(
+        itemCount: workouts.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    workout: workouts[index],
+                    onToggleCheck: (bool isChecked) {
+                      setState(() {
+                        workouts[index]['isChecked'] = isChecked;
+                      });
+                    },
+                  ),
+                ),
+              );
+            },
+            child: Card(
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/login.png",
+                      width: 70,
+                      height: 70,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            workouts[index]['name']!,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            workouts[index]['description']!,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Checkbox(
+                      value: workouts[index]['isChecked'],
+                      onChanged: (bool? value) {
+                        setState(() {
+                          
+                          workouts[index]['isChecked'] = value!;
+                        });
+                      },
+                      activeColor: Colors.blue,
+                      checkColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
