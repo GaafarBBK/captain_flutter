@@ -4,8 +4,9 @@ import 'package:captain11/screen/bottm_navigation/HomePage.dart';
 import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
 
 class StorePage extends StatefulWidget {
-  StorePage({super.key});
+  const StorePage({super.key});
   @override
+  // ignore: library_private_types_in_public_api
   _StorePageState createState() => _StorePageState();
 }
 
@@ -38,8 +39,28 @@ class _StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ملفي '),
+      ),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage('https://example.com/user.jpg'),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'علي أحمد',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text('مطور تطبيقات فلاتر'),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -48,7 +69,7 @@ PreferredSizeWidget StoreAppBar() {
   return AppBar(
     centerTitle: true,
     title: Text(
-      'متجر ',
+      ' ',
       style: GoogleFonts.changa(
         fontSize: 24,
         fontWeight: FontWeight.bold,
