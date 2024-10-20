@@ -39,8 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            label: 'المتجر',
+            icon: Icon(Icons.person),
+            label: 'حسابي',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.date_range_outlined),

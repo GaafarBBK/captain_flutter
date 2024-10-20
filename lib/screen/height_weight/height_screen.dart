@@ -110,7 +110,6 @@ class _HeightScreenState extends State<HeightScreen> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                 
                 ),
               ),
               const SizedBox(
