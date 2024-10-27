@@ -1,9 +1,14 @@
+import 'package:captain11/helpers/random_functions.dart';
+import 'package:captain11/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:captain11/screen/home.dart';
 import 'package:captain11/screen/auth_screens/login.dart';
+import 'package:provider/provider.dart';
 
 class Regicterscreen extends StatefulWidget {
-  const Regicterscreen({Key? key}) : super(key: key);
+  final bool isMale;
+  final int height;
+  final int weight;
+  const Regicterscreen({super.key, required this.isMale, required this.height, required this.weight});
 
   @override
   State<Regicterscreen> createState() => _RegicterscreenState();
@@ -196,7 +201,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFF00A7E1),
                                     Color(0xFF003459)
@@ -213,10 +218,38 @@ class _RegicterscreenState extends State<Regicterscreen> {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyHomePage()));
+                                Provider.of<AuthProvider>(context, listen: false)
+                                    .register({
+                                  'email': _emailController.text,
+                                  'password': _passwordController.text,
+                                  'name': _nemeController.text,
+                                  'phone': _pohenController.text,
+                                  'birth_date': _batdController.text,
+                                  'role': 'athlete',
+                                  'gender': widget.isMale ? 'male' : 'female',
+                                  'age' : calculateAge(DateTime.parse(_batdController.text)),
+                                  'weight' : widget.weight,
+                                  'height' : widget.height,
+                                  'ath_lvl' : 'Advanced',
+                                  'ath_goal' : 'Build Muscle',
+                                  'ath_body' : 'Muscular',
+                                }).then((value) {
+                                  if(value[0]){
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen(isMale: widget.isMale, weight: widget.weight, height: widget.height,)),
+                                    );
+                                  } else{
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(value[1]['message']),
+                                      ),
+                                    );
+                                  }
+                                  
+                                });
+                                
                               }
                             },
                             child: const Text(
@@ -242,7 +275,7 @@ class _RegicterscreenState extends State<Regicterscreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const LoginScreen()),
+                                            LoginScreen(isMale: widget.isMale, weight: widget.weight, height: widget.height)),
                                   );
                                 },
                                 child: const Text(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:captain11/helpers/consts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:captain11/providers/auth_provider.dart';
+import 'package:captain11/providers/base_provider.dart';
 import 'package:captain11/screen/onboarding_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -13,57 +16,66 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      locale: const Locale('ar', ''),
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('ar', ''),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BaseProvider()),
+        ChangeNotifierProvider(
+            create: (_) => AuthProvider()..initilazAuthProvider()),
       ],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      localeResolutionCallback: (locale, supportedLocales) {
-        for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale?.languageCode) {
-            return supportedLocale;
+      child: MaterialApp(
+        locale: const Locale('ar', ''),
+        supportedLocales: [
+          const Locale('en', ''),
+          const Locale('ar', ''),
+        ],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale?.languageCode) {
+              return supportedLocale;
+            }
           }
-        }
-        return supportedLocales.first;
-      },
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(),
-        appBarTheme: AppBarTheme(
-          backgroundColor: mainColor,
-          titleTextStyle: GoogleFonts.changa(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
+          return supportedLocales.first;
+        },
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch().copyWith(),
+          appBarTheme: AppBarTheme(
             backgroundColor: mainColor,
-            textStyle: GoogleFonts.changa(
-              fontSize: 16,
+            titleTextStyle: GoogleFonts.changa(
+              fontSize: 20,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            iconTheme: IconThemeData(color: Colors.white),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: mainColor,
+              textStyle: GoogleFonts.changa(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
+          textTheme: TextTheme(
+            bodyLarge: GoogleFonts.changa(),
+            bodyMedium: GoogleFonts.changa(),
+            displayLarge:
+                GoogleFonts.changa(fontSize: 32, fontWeight: FontWeight.bold),
+            titleLarge:
+                GoogleFonts.changa(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
-        textTheme: TextTheme(
-          bodyLarge: GoogleFonts.changa(),
-          bodyMedium: GoogleFonts.changa(),
-          displayLarge:
-              GoogleFonts.changa(fontSize: 32, fontWeight: FontWeight.bold),
-          titleLarge:
-              GoogleFonts.changa(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
+        home: OnboardingScreen(),
       ),
-      home: OnboardingScreen(),
     );
   }
 }
+
+

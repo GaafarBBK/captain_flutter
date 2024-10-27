@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:captain11/models/user_model.dart';
 import 'package:captain11/screen/bottm_navigation/HomePage.dart';
 import 'package:captain11/screen/bottm_navigation/StorePage.dart';
 import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
@@ -11,18 +12,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 2;
+  final int weight = 80;
 
   final List<Widget> _pages = [
     StorePage(),
     TodayPage(),
-    HomePage(),
+    HomePage(weight: 70,),
   ];
 
   final List<Widget?> _drawer = [null, null, Drawer()];
   final List<PreferredSizeWidget?> appbars = [
     StoreAppBar(),
     null,
-    null,
+    HomeAppBar(),
   ];
 
   void _onItemTapped(int index) {

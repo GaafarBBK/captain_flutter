@@ -1,10 +1,16 @@
+import 'package:captain11/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:captain11/screen/home.dart';
 import 'package:captain11/screen/auth_screens/register_screen.dart';
 import 'package:captain11/screen/auth_screens/regicter_screen.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final bool isMale;
+  final int weight;
+  final int height;
+
+  const LoginScreen({super.key, required this.isMale, required this.weight, required this.height});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -135,10 +141,26 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => MyHomePage()));
+                              Provider.of<AuthProvider>(context, listen: false)
+                                  .login({
+                                    'email': _emailController.text,
+                                    'password': _passwordController.text,
+                                  })
+                                  .then((value) {
+                                if (value[0]) {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyHomePage()),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(value[1]['message']),
+                                    ),
+                                  );
+                                }
+                              });
                             }
                           },
                           child: const Text(
@@ -197,14 +219,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const Regicterscreen()),
+                                          Regicterscreen(isMale: widget.isMale, height: widget.height, weight: widget.weight,)),
                                 );
                               },
                               child: const Text(
                                 'سجّل الآن',
                                 style: TextStyle(
                                   color: Colors.blue,
-                                
                                 ),
                               ),
                             ),

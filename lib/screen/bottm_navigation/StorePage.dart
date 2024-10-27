@@ -1,18 +1,59 @@
+import 'package:captain11/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:captain11/widget/cards.dart';
+import 'package:captain11/screen/stab.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:captain11/screen/auth_screens/login.dart';
 import 'package:captain11/screen/bottm_navigation/HomePage.dart';
 import 'package:captain11/screen/bottm_navigation/TodayPage.dart';
+import 'package:captain11/providers/auth_provider.dart';
+import 'package:provider/provider.dart'; // Import the auth provider
+
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
+  final int weight = 70;
   @override
   _StorePageState createState() => _StorePageState();
 }
 
 class _StorePageState extends State<StorePage> {
   int _selectedIndex = 0;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
+  // final TextEditingController _genderController = TextEditingController();
+  // final TextEditingController _ageController = TextEditingController();
+
+
+
+
+@override
+  void initState() {
+    Provider.of<AuthProvider>(context, listen: false)
+        .getUser()
+        .then((userdata) {
+          if(userdata != null) {
+             _nameController.text = userdata!.name;
+      if(userdata!.phoneNumber != null) {
+        _phoneController.text = userdata!.phoneNumber!;
+      } else {
+        _phoneController.text = '';
+      };
+      // _ageController.text = userdata.age.toString();
+      // _genderController.text = userdata.gender;
+      _emailController.text = userdata.email;
+
+      setState(() {
+        
+      });
+            
+          }
+     
+    });
+    super.initState();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -32,7 +73,7 @@ class _StorePageState extends State<StorePage> {
       if (_selectedIndex == 2) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => HomePage(weight: widget.weight,)),
         );
       }
     });
@@ -70,7 +111,7 @@ class _StorePageState extends State<StorePage> {
                               color: Colors.black.withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 10,
-                              offset: Offset(0, 5),
+                              offset: const Offset(0, 5),
                             ),
                           ],
                         ),
@@ -82,46 +123,49 @@ class _StorePageState extends State<StorePage> {
                     ),
                   ],
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'عبد الرحمن رشدي',
-                      style: TextStyle(
+                      _nameController.text,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '0913362358',
-                      style: TextStyle(
+                      _phoneController.text,
+                      style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.normal,
                           color: Colors.black54),
                     ),
-                    Text(
-                      'bdwm83249@gmail.com',
-                      style: TextStyle(
+                     Text(
+                      _emailController.text,
+                      style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.normal,
                           color: Colors.black54),
                     ),
+                    //  Text(
+                    //   _ageController.text,
+                    //   style: const TextStyle(
+                    //       fontSize: 15,
+                    //       fontWeight: FontWeight.normal,
+                    //       color: Colors.black54),
+                    // ),
                   ],
                 ),
               ],
             ),
             const SizedBox(height: 30),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-              ),
-            ),
+         
             const SizedBox(height: 20),
             InkWell(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TodayPage()),
+                  MaterialPageRoute(builder: (context) => StepCounterScreen()),
                 );
               },
               child: Container(
@@ -133,7 +177,7 @@ class _StorePageState extends State<StorePage> {
                 height: 50,
                 width: 300,
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   'تدريب اليوم',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -191,7 +235,7 @@ PreferredSizeWidget StoreAppBar() {
       style: GoogleFonts.changa(
         fontSize: 24,
         fontWeight: FontWeight.bold,
-        color: Colors.white,
+        color: Colors.blue,
       ),
     ),
     actions: [

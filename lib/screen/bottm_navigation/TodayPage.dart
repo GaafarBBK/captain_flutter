@@ -6,6 +6,7 @@ import 'package:captain11/screen/bottm_navigation/TodayPage8/details.dart';
 
 class TodayPage extends StatefulWidget {
   TodayPage({super.key});
+  final int weight = 70;
 
   @override
   _TodayPageState createState() => _TodayPageState();
@@ -147,7 +148,7 @@ class _TodayPageState extends State<TodayPage> {
       if (_selectedIndex == 2) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => HomePage(weight: widget.weight,)),
         );
       }
     });
@@ -297,7 +298,6 @@ class _TodayPageState extends State<TodayPage> {
                       value: workouts[index]['isChecked'],
                       onChanged: (bool? value) {
                         setState(() {
-                          
                           workouts[index]['isChecked'] = value!;
                         });
                       },

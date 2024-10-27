@@ -4,14 +4,18 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:captain11/screen/height_weight/weight_screen.dart';
 
 class HeightScreen extends StatefulWidget {
-  const HeightScreen({super.key});
+  final bool isMale;
+  const HeightScreen({super.key, required this.isMale});
+  
+
+  
 
   @override
   _HeightScreenState createState() => _HeightScreenState();
 }
 
 class _HeightScreenState extends State<HeightScreen> {
-  int _height = 175;
+  int height = 175;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class _HeightScreenState extends State<HeightScreen> {
             height: 50,
           ),
           Text(
-            'الطول: $_height سم',
+            'الطول: $height سم',
             style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           Expanded(
@@ -73,7 +77,7 @@ class _HeightScreenState extends State<HeightScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: NumberPicker(
-                          value: _height,
+                          value: height,
                           minValue: 100,
                           maxValue: 250,
                           step: 1,
@@ -81,7 +85,7 @@ class _HeightScreenState extends State<HeightScreen> {
                           axis: Axis.vertical,
                           onChanged: (value) {
                             setState(() {
-                              _height = value;
+                              height = value;
                             });
                           },
                           selectedTextStyle: const TextStyle(
@@ -134,7 +138,7 @@ class _HeightScreenState extends State<HeightScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const WeightScreen()));
+                              builder: (context) => WeightScreen(height: height, isMale: widget.isMale)));
                     },
                     child: const Icon(
                       Icons.arrow_forward_ios_rounded,

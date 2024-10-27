@@ -49,7 +49,7 @@ class _GenderToggleSwitchState extends State<GenderToggleSwitch> {
               style: TextStyle(
                   fontSize: 40, color: isMale ? Colors.blue : Colors.pink),
             ),
-            SizedBox(height: 85),
+            const SizedBox(height: 85),
             FlutterSwitch(
               width: 120.0,
               height: 50.0,
@@ -105,7 +105,7 @@ class _GenderToggleSwitchState extends State<GenderToggleSwitch> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HeightScreen()));
+                                builder: (context) => HeightScreen(isMale: isMale)));
                       },
                       child: const Icon(
                         Icons.arrow_forward_ios_rounded,

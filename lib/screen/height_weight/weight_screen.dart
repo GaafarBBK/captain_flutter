@@ -5,7 +5,13 @@ import 'package:captain11/screen/height_weight/height_screen.dart';
 import 'package:captain11/screen/auth_screens/regicter_screen.dart';
 
 class WeightScreen extends StatefulWidget {
-  const WeightScreen({super.key});
+  final bool isMale;
+  final int height;
+   const WeightScreen({super.key, required this.isMale, required this.height});
+
+  
+   
+
 
   @override
   _WeightScreenState createState() => _WeightScreenState();
@@ -124,7 +130,7 @@ class _WeightScreenState extends State<WeightScreen> {
                       Navigator.pushReplacement(
                           context,
                           CupertinoPageRoute(
-                              builder: (context) => const HeightScreen()));
+                              builder: (context) => HeightScreen(isMale: widget.isMale,)));
                     },
                     child: const Icon(
                       Icons.arrow_back_ios_new_rounded,
@@ -155,7 +161,7 @@ class _WeightScreenState extends State<WeightScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Regicterscreen()));
+                              builder: (context) => Regicterscreen(height: widget.height, isMale: widget.isMale, weight: _weight)));
                     },
                     child: const Icon(
                       Icons.arrow_forward_ios_rounded,
