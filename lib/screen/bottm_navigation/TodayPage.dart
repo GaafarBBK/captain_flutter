@@ -15,119 +15,15 @@ class TodayPage extends StatefulWidget {
 class _TodayPageState extends State<TodayPage> {
   int _selectedIndex = 1;
 
-  List<Map<String, dynamic>> workouts = [
+  List<Map<String, dynamic>> exercises = [
     {
       'name': '1أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
+      'sets': 'الوزن و العدادت',
       'image': 'assets/cardio.png',
       'date': '2024-10-19',
       'isChecked': false,
     },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/yoga.png',
-      'date': '2024-10-21',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'ppppp': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
-    {
-      'name': 'أسم التدريب',
-      'description1': 'وصف التمرين',
-      'description': 'الوزن و العدادت',
-      'image': 'assets/weights.png',
-      'date': '2024-10-20',
-      'isChecked': false,
-    },
+    
   ];
 
   void _onItemTapped(int index) {
@@ -241,7 +137,7 @@ class _TodayPageState extends State<TodayPage> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.builder(
-        itemCount: workouts.length,
+        itemCount: exercises.length,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
@@ -249,10 +145,10 @@ class _TodayPageState extends State<TodayPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => DetailsPage(
-                    workout: workouts[index],
+                    workout: exercises[index],
                     onToggleCheck: (bool isChecked) {
                       setState(() {
-                        workouts[index]['isChecked'] = isChecked;
+                        exercises[index]['isChecked'] = isChecked;
                       });
                     },
                   ),
@@ -277,7 +173,7 @@ class _TodayPageState extends State<TodayPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            workouts[index]['name']!,
+                            exercises[index]['name']!,
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -285,20 +181,30 @@ class _TodayPageState extends State<TodayPage> {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          Text(
-                            workouts[index]['description']!,
-                            style: const TextStyle(
-                              fontSize: 14,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                exercises[index]['description1']!,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Text(
+                                exercises[index]['description']!,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
                     Checkbox(
-                      value: workouts[index]['isChecked'],
+                      value: exercises[index]['isChecked'],
                       onChanged: (bool? value) {
                         setState(() {
-                          workouts[index]['isChecked'] = value!;
+                          exercises[index]['isChecked'] = value!;
                         });
                       },
                       activeColor: Colors.blue,

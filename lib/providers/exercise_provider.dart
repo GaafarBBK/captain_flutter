@@ -28,4 +28,7 @@ class ExercisesProvider extends BaseProvider{
     }
   }
 
+
+  
+
 }
